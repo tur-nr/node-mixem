@@ -1,0 +1,26 @@
+{
+  "name": "mixem",
+  "version": "0.0.0",
+  "description": "Utility module for mixing Prototypes onto a targeted constructor.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tur-nr/node-mixem"
+  },
+  "keywords": [
+    "mixing",
+    "inherit",
+    "borrow",
+    "combine",
+    "prototype"
+  ],
+  "author": "Christopher Turner <turner296@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tur-nr/node-mixem/issues"
+  },
+  "homepage": "https://github.com/tur-nr/node-mixem"
+}
