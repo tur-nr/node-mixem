@@ -5,7 +5,8 @@ var isval = require('isval')
 module.exports = function mixem() {
   var args = slice(arguments)
     , base = args.shift()
-    , mixed = {};
+    , mixed = {}
+    , keys;
 
   if (!isval(base, 'function')) {
     throw new TypeError('base must be a constructor Function');
@@ -16,10 +17,13 @@ module.exports = function mixem() {
       throw new TypeError('mixers must be a constructor Function');
     } 
 
-    for (var k in args[i].prototype) {
-      if (isval(base.prototype[k], 'undefined') && !mixed[k]) {
-        mixed[k] = args[i].prototype[k]; 
-      }
+    keys = Object.getOwnPropertyNames(args[i].prototype);
+
+    for (var k = keys.length - 1; k >= 0; --k) {
+      if (isval(base.prototype[keys[k]], 'undefined') && !mixed[keys[k]]
+          && keys[k] !== 'constructor') {
+        mixed[keys[k]] = args[i].prototype[keys[k]]; 
+      } 
     }
   }
   

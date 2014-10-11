@@ -70,7 +70,7 @@ describe('#mixem()', function() {
       return 'baz';
     };
 
-    mixem(Test, Mix);
+    mixem(Test, Mix, Array);
     instance = new Test();
 
     assert.equal(instance.foo(), 'bar');
