@@ -1,6 +1,6 @@
 {
   "name": "mixem",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Utility module for mixing Prototypes onto a targeted constructor.",
   "main": "index.js",
   "scripts": {
@@ -22,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/tur-nr/node-mixem/issues"
   },
-  "homepage": "https://github.com/tur-nr/node-mixem"
+  "homepage": "https://github.com/tur-nr/node-mixem",
+  "dependencies": {
+    "extend": "^2.0.0",
+    "isval": "0.0.2",
+    "sliced": "0.0.5"
+  }
 }
