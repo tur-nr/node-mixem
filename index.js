@@ -17,7 +17,7 @@ module.exports = function mixem() {
     } 
 
     for (var k in args[i].prototype) {
-      if (typeof base.prototype[k] === 'undefined' && !mixed[k]) {
+      if (isval(base.prototype[k], 'undefined') && !mixed[k]) {
         mixed[k] = args[i].prototype[k]; 
       }
     }
