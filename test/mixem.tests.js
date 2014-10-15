@@ -1,5 +1,6 @@
 var mixem = require('../')
-  , assert = require('assert');
+  , assert = require('assert')
+  , Emitter = require('events').EventEmitter;
 
 describe('#mixem()', function() {
   it('should throw TypeError if base not constructor', function() {
@@ -20,7 +21,7 @@ describe('#mixem()', function() {
     function Test() {}
 
     assert.strictEqual(mixem(Test), Test);
-    assert.strictEqual(mixem(Test, Array), Test);
+    assert.strictEqual(mixem(Test, Emitter), Test);
   });
 
   it('should throw TypeError if mixer is not a constructor', function() {
@@ -36,6 +37,12 @@ describe('#mixem()', function() {
     assert.throws(function() { mixem(Test, []); }, except);
     assert.throws(function() { mixem(Test, {}); }, except);
     assert.throws(function() { mixem(Test, NaN); }, except); 
+  });
+
+  it('should throw SyntaxError if mixer is a native constructor', function() {
+    function Test() {}
+
+    assert.throws(function() { mixem(Test, Emitter, Array); }, /native/);
   });
 
   it('should mix prototype methods onto base', function() {
@@ -70,7 +77,7 @@ describe('#mixem()', function() {
       return 'baz';
     };
 
-    mixem(Test, Mix, Array);
+    mixem(Test, Mix);
     instance = new Test();
 
     assert.equal(instance.foo(), 'bar');

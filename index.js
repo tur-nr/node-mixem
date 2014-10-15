@@ -1,6 +1,7 @@
 var isval = require('isval')
   , extend = require('extend')
-  , slice = require('sliced');
+  , slice = require('sliced')
+  , isNative = require('lodash._isnative');
 
 module.exports = function mixem() {
   var args = slice(arguments)
@@ -10,12 +11,16 @@ module.exports = function mixem() {
 
   if (!isval(base, 'function')) {
     throw new TypeError('base must be a constructor Function');
-  } 
+  }
 
   for (var i = args.length - 1; i >= 0 ; --i) {
     if (!isval(args[i], 'function')) {
       throw new TypeError('mixers must be a constructor Function');
     } 
+    
+    if (isNative(args[i])) {
+      throw new SyntaxError('mixers can\'t be native constructor Functions'); 
+    }
 
     keys = Object.getOwnPropertyNames(args[i].prototype);
 
@@ -27,7 +32,9 @@ module.exports = function mixem() {
     }
   }
   
-  extend(base.prototype, mixed);
+  if (Object.keys(mixed).length) {
+    extend(base.prototype, mixed); 
+  }
 
   return base;
 };

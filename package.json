@@ -26,6 +26,7 @@
   "dependencies": {
     "extend": "^2.0.0",
     "isval": "0.0.2",
+    "lodash._isnative": "^2.4.1",
     "sliced": "0.0.5"
   }
 }
