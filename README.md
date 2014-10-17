@@ -96,7 +96,7 @@ instance.emit('init'); // EventEmitter
 
 #### Method Priority
 
-`mixem` doesn't follow the same merge procedure of `extend`. If a method already exists on a prior prototype within the given arguments it will **not** be overwritten.
+`mixem` doesn't follow the same merge procedure as `extend`. If a method already exists on a prior prototype within the given arguments it will **not** be overwritten.
 
 ```js
 function Base() { }
@@ -125,7 +125,7 @@ Base.prototype.constructor = Base;
 
 #### Strict Constructors
 
-If a constructor implements a "strict" context check you won't be able to call the constructor and bind the instance.
+If a constructor implements a *strict* context check you won't be able to call the constructor and bind the instance.
 
 ```js
 function StrictMixer() {
